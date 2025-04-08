@@ -7,6 +7,7 @@ export class Server {
     // Cuando se inicie la aplicación se ejecuta el constructor al instante
     this.app = express(); // Le asignamos un valor de tipo express para crear el proyecto
     this.port = "3000"; // Asignamos la ruta al puerto
+    console.log(process.env.PORT);
 
     this.listen();
   }
