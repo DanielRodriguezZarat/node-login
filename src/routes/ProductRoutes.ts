@@ -5,7 +5,7 @@ import { getProductos } from "../controllers/ProductController";
 // Creamos un nuevo router
 const router = Router();
 
-// Creamos la ruta principal
+// Creamos la ruta principal para obtener los productos
 router.get("/", getProductos);
 
 // Exportamos la ruta

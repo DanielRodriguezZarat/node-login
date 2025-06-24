@@ -1,6 +1,8 @@
 import express from "express";
 import routerProducts from "../routes/ProductRoutes";
 import routerUsers from "../routes/userRoutes";
+import { Product } from "./product";
+import { User } from "./user";
 
 export class Server {
   private app: express.Application; // Creamos una variable tipo express Application
@@ -11,6 +13,7 @@ export class Server {
     this.port = process.env.PORT || "3000"; // Asignamos la ruta al puerto
 
     this.listen();
+    this.dbConnect();
     this.middleware();
     this.router();
   }
@@ -31,5 +34,14 @@ export class Server {
   middleware() {
     // Estamos diciendo que puede transcribir lo que recibimos a tipo json
     this.app.use(express.json());
+  }
+
+  async dbConnect() {
+    try {
+      await Product.sync();
+      await User.sync();
+    } catch (error) {
+      console.log("Error en la conexión de la base de datos");
+    }
   }
 }
